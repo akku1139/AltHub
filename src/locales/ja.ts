@@ -3,5 +3,5 @@ import en from "./en.ts";
 
 export default {
   ...en,
-  althub: "オルトハブ"
+  althub: "オルトハブ" // TODO ダサいので後で消す
 } as const satisfies schema;

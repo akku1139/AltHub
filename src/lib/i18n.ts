@@ -1,4 +1,4 @@
-import locales from "../../locales/_index.ts";
+import locales from "../locales/_index.ts";
 
 let lang = "ja"
 
