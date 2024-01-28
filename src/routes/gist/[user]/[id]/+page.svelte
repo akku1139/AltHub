@@ -4,3 +4,4 @@ export let data:PageLoad;
 </script>
 
 <h1>gist</h1>
+<div>{ data.title }</div>
