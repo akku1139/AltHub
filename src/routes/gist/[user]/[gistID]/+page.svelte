@@ -5,4 +5,4 @@ export let data:PageData;
 
 <h1>gist</h1>
 <div>{ data.title }</div>
-<div><span>{ data.user }</span>/<span>{ data.gistID }</span>
+<div><span>{ data.user }</span>/<span>{ data.gistID }</span></div>
