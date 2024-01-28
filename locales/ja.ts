@@ -3,4 +3,5 @@ import en from "./en.ts";
 
 export default {
   ...en,
+  althub: "オルトハブ"
 } as const satisfies schema;
