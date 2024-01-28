@@ -4,18 +4,51 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - main
     paths:
       - "bun.lockb"
       - "node_modules"
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
+  setup:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [latest]
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+
       - name: Setup Bun
         uses: oven-sh/setup-bun@v1
+
+      - name: Cache node_modules
+        id: node_modules_cache_id
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ matrix.os }}-bun-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/bun.lockb')) }}
+
       - run: "bun install"
+
+  eslint:
+    needs: setup
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [latest]
+    steps:
       - run: "bun run lint"
+
+  svelte-check:
+    needs: setup
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [latest]
+    steps:
+      - run: "bun run check"
+
+  all:
+    needs: [eslint, svelte-check]
