@@ -15,20 +15,21 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+      - name: Setup Node
+        uses: setup-node@v4
 
       - name: Cache node_modules
         id: node_modules_cache_id
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: node_modules
-          key: bun-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/bun.lockb')) }}
+          key: pnpm-deps-${{ hashFiles('node_modules/.pnpm/lock.yaml') }}
+          restore-keys: pnpm-deps-
 
       - name: Install Dependencies
         if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
-        run: "bun install"
+        run: "pnpm install"
 
       - run: "bun run ${{ matrix.scripts}}"
