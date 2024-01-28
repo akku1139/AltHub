@@ -1,6 +1,6 @@
 import * as htmlparser2 from "htmlparser2";
 import { error } from '@sveltejs/kit';
-import type { PageLoad } from "./$types";
+import type { PageServerLoad } from "./$types";
 
 type ret = {
 	title: string;
@@ -8,7 +8,7 @@ type ret = {
 	gistID: string;
 }
 
-export async function load({ params }): PageLoad {
+export async function load({ params }): PageServerLoad {
 	const res = (await fetch(`https://gist.github.com/${params.user}/${params.gistID}`)).text();
 	const doc = htmlparser2.parseDocument(res);
 	return {
