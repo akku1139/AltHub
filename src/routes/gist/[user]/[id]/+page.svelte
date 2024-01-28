@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import { PageLoad } from "./$types";
 export let data:PageLoad;
 </script>
