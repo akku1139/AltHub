@@ -1,11 +1,10 @@
-import { JSDOM } from 'jsdom';
+import * as htmlparser2 from "htmlparser2";
 import { error } from '@sveltejs/kit';
 import type { PageLoad } from "./$types";
 
 export async function load({ params }): PageLoad {
-	const dom = JSDOM.fromURL(`https://gist.github.com/${params.user}/${params.id}`);
-	const document:Document = dom.window.document;
+	const doc = htmlparser2.parseDocument((await fetch(`https://gist.github.com/${params.user}/${params.id}`)).text())
 	return {
-		title: document.querySelector('div[@itemprop="about"]')?.innerHTML
+		title: ('div[@itemprop="about"]')
 	};
 }
