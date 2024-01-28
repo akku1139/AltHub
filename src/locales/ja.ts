@@ -3,5 +3,5 @@ import en from "./en.ts";
 
 export default {
   ...en,
-  althub: "オルトハブ" // TODO ダサいので後で消す
+  view_on_github: "GitHubで見る"
 } as const satisfies schema;

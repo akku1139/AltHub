@@ -5,9 +5,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "bun.lockb"
-      - "node_modules"
 
 jobs:
   setup:
