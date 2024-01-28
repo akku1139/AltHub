@@ -19,8 +19,6 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v4
-        with:
-          cache: 'npm'
 
       - name: Cache node_modules
         id: node_modules_cache_id
