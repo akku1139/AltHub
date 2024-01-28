@@ -8,6 +8,9 @@ export function load({ params }): PageLoad {
 			error(404, 'Not found');
 			return;
 		}
-		const doc = libxmljs.parseXml(res.text());
+		res.text().then((_text) => {
+			const doc = libxmljs.parseXml(_text);
+			doc.find('//div[@itemprop="about"]')[0].text();
+		})
 	})
 }
