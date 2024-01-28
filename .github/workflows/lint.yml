@@ -49,6 +49,3 @@ jobs:
         os: [latest]
     steps:
       - run: "bun run check"
-
-  all:
-    needs: [eslint, svelte-check]
