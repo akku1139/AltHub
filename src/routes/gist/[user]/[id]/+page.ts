@@ -1,6 +1,6 @@
 import libxmljs from "libxmljs";
 import { error } from '@sveltejs/kit';
-import { PageLoad } from "./$types";
+import type { PageLoad } from "./$types";
 
 export function load({ params }): PageLoad {
 	const res = fetch(`https://gist.github.com/${params.user}/${params.id}`).then((res) => {

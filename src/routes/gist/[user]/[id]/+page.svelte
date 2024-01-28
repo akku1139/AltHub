@@ -1,5 +1,5 @@
 <script lang="ts">
-import { PageLoad } from "./$types";
+import type { PageLoad } from "./$types";
 export let data:PageLoad;
 </script>
 

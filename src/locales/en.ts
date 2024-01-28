@@ -1,4 +1,4 @@
-import schema from "./_schema.ts";
+import type schema from "./_schema.ts";
 
 export default {
   althub: "AltHub",
