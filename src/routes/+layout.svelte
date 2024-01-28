@@ -1,6 +1,6 @@
 <script>
 import { t, lang } from "$lib/i18n.ts";
-import toGitHubURL from "$lib/toGitHubURL.ts"
+import toGitHubURL from "$lib/toGitHubURL.ts";
 import { page } from '$app/stores';
 </script>
 
