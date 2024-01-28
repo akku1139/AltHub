@@ -7,11 +7,11 @@ on:
       - main
 
 jobs:
-  setup:
-    runs-on: ${{ matrix.os }}
+  loop:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        scripts: [lint, check]
 
     steps:
       - name: Checkout
@@ -25,24 +25,10 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ matrix.os }}-bun-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/bun.lockb')) }}
+          key: bun-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/bun.lockb')) }}
 
-      - run: "bun install"
+      - name: Install Dependencies
+        if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
+        run: "bun install"
 
-  eslint:
-    needs: setup
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-    steps:
-      - run: "bun run lint"
-
-  svelte-check:
-    needs: setup
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-    steps:
-      - run: "bun run check"
+      - run: "bun run ${{ matrix.scripts}}"
