@@ -20,16 +20,16 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
 
-      - name: Cache node_modules
-        id: node_modules_cache_id
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: npm-deps-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-deps-
+      # - name: Cache node_modules
+      #   id: node_modules_cache_id
+      #   uses: actions/cache@v4
+      #   with:
+      #     path: node_modules
+      #     key: npm-deps-${{ hashFiles('package-lock.json') }}
+      #     restore-keys: npm-deps-
 
       - name: Install Dependencies
-        if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
+        # if: steps.node_modules_cache_id.outputs.cache-hit != 'true'
         run: "npm install"
 
       - run: "npm run ${{ matrix.scripts}}"
