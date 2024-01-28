@@ -4,6 +4,5 @@ import type { PageData } from "./$types";
 export let data:PageData;
 </script>
 
-<h1>gist</h1>
-<div>{ data.title }</div>
-<div><span>{ $page.params.user }</span>/<span>{ $page.params.gistID }</span></div>
+<div><a href={ $page.params.user }>{ $page.params.user }</span>/<span href={ $page.params.gistID }>{ data.title }</span></div>
+<div>{ data.description }</div>
