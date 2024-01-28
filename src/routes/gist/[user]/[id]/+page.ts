@@ -7,5 +7,5 @@ export async function load({ params }): PageLoad {
 	const document:Document = dom.window.document;
 	return {
 		title: document.querySelector('div[@itemprop="about"]')?.innerHTML
-	}
+	};
 }
