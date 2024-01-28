@@ -9,11 +9,9 @@ type ret = {
 }
 
 export async function load({ params }): PageServerLoad {
-	const res = (await fetch(`https://gist.github.com/${params.user}/${params.gistID}`)).text();
+	const res = await (await fetch(`https://gist.github.com/${params.user}/${params.gistID}`)).text();
 	const doc = htmlparser2.parseDocument(res);
 	return {
-		title: /<div itemprop="about">.*?<\/div>/.exec(res)[0].trim(),
-		user: params.user,
-		gistID: params.gistID,
+		title: /<div itemprop="about">(.*?)<\/div>/s.exec(res)[1].trim(),
 	} satisfies ret;
 }
