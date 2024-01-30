@@ -2,20 +2,34 @@ import * as htmlparser2 from "htmlparser2";
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from "./$types";
 
-type ret = {
+type User = {
+	id: string;
+	iconURL: string;
+};
+
+type Gist = {
 	title: string;
 	description: string;
+	user: string; // TODO: define another type
+	gistID: string;
+	stars: number;
+	forks: number;
 	files: {
 		filename: string;
 		content:  {
 			text?: string; // if basic file
-			url?: string; // if images like file
+			url?: string; // if image like file
 		};
-		comments: {
-			
-		}
 	};
-}
+	revisions: {
+
+	}
+	comments: {
+		user: User;
+		date: Date;
+		contentHistory: string[];
+	}
+};
 
 export async function load({ params }): PageServerLoad {
 	const res = await (await fetch(`https://gist.github.com/${params.user}/${params.gistID}`)).text();
@@ -23,5 +37,5 @@ export async function load({ params }): PageServerLoad {
 	return {
 		title: new RegExp(`<a href="/${params.user}/${params.gistID}">(.*?)</a>`).exec(res)[1],
 		description: /<div itemprop="about">(.*?)<\/div>/s.exec(res)[1].trim(),
-	} satisfies ret;
+	} satisfies Gist;
 }
