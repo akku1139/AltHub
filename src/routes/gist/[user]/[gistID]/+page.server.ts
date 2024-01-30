@@ -5,6 +5,12 @@ import type { PageServerLoad } from "./$types";
 type ret = {
 	title: string;
 	description: string;
+	files: {
+		filename: string;
+		content:  {
+			text: string; // if basic file
+		};
+	};
 }
 
 export async function load({ params }): PageServerLoad {
