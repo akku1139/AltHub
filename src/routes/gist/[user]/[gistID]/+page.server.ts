@@ -8,8 +8,12 @@ type ret = {
 	files: {
 		filename: string;
 		content:  {
-			text: string; // if basic file
+			text?: string; // if basic file
+			url?: string; // if images like file
 		};
+		comments: {
+			
+		}
 	};
 }
 
