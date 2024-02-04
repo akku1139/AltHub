@@ -15,7 +15,7 @@ export async function load({ params }): Promise<Gist> {
   return {
     title: new RegExp(`<a href="/${params.user}/${params.gistID}">(.*?)</a>`).exec(text)[1],
     description: /<div itemprop="about">(.*?)<\/div>/s.exec(text)[1].trim(),
-    stars: Number(head.querySelector("#gist-star-button-count > * :nth-child(3)").innerText),
-    forks: Number(head.querySelector("#gist-fork-button > * :nth-child(3)").innerText),
+    stars: Number(head.querySelector("#gist-star-button-count :first-child :nth-child(3)").innerText),
+    forks: Number(head.querySelector("#gist-fork-button :first-child :nth-child(3)").innerText),
   };
 }
