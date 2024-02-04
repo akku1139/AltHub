@@ -9,7 +9,7 @@ export async function load({ params }): Promise<Gist> {
       message: 'Not found',
     });
   }
-  const text = await res.text()
+  const text = await res.text();
   const doc = await parse(text);
   return {
     title: new RegExp(`<a href="/${params.user}/${params.gistID}">(.*?)</a>`).exec(text)[1],
