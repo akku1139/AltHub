@@ -5,7 +5,7 @@ import { page } from '$app/stores';
 
 <header>
   <a href="/"><h1>AltHub</h1></a>
-  <a href="{ toGitHubURL($page.url.pathname) }">{ t("view_on_github")}</a>
+  <a href="{ toGitHubURL($page.url.pathname) }">View on GitHub</a>
 </header>
 
 <slot></slot>
