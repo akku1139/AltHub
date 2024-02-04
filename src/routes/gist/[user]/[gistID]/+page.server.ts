@@ -1,12 +1,13 @@
 import { parse } from 'node-html-parser';
 import { error } from '@sveltejs/kit';
-import type { PageServerLoad } from "./$types";
+import type { Gist } from "$lib/types/gist.ts";
 
-export async function load({ params }): PageServerLoad {
+export async function load({ params }): Gist {
   const res = await (await fetch(`https://gist.github.com/${params.user}/${params.gistID}`)).text();
   const doc = await parse(res);
   return {
     title: new RegExp(`<a href="/${params.user}/${params.gistID}">(.*?)</a>`).exec(res)[1],
     description: /<div itemprop="about">(.*?)<\/div>/s.exec(res)[1].trim(),
-  } satisfies Gist;
+
+  };
 }
