@@ -9,10 +9,11 @@ export async function load({ params }): Promise<Gist> {
       message: 'Not found',
     });
   }
-  const doc = await parse(await res.text());
+  const text = await res.text()
+  const doc = await parse(text);
   return {
-    title: new RegExp(`<a href="/${params.user}/${params.gistID}">(.*?)</a>`).exec(res)[1],
-    description: /<div itemprop="about">(.*?)<\/div>/s.exec(res)[1].trim(),
+    title: new RegExp(`<a href="/${params.user}/${params.gistID}">(.*?)</a>`).exec(text)[1],
+    description: /<div itemprop="about">(.*?)<\/div>/s.exec(text)[1].trim(),
     forks: Number(doc.querySelector("button#gist-fork-button > * :nth-child(3)").innerText),
   };
 }
