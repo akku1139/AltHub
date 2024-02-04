@@ -6,6 +6,7 @@ export type Gist = {
   user: User;
   gistID: string;
   stars: number;
+  // stargazers: User[];
   forks: number;
   files: {
     filename: string;

@@ -7,3 +7,5 @@ export let data:Gist;
 <div><a href={ $page.params.user }>{ $page.params.user }</a>/<a href={ $page.params.gistID }>{ data.title }</a></div>
 <div>{ data.description }</div>
 forks: {data.forks}
+
+{ JSON.stringify(data) }

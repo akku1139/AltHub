@@ -10,10 +10,12 @@ export async function load({ params }): Promise<Gist> {
     });
   }
   const text = await res.text();
-  const doc = await parse(text);
+  const doc = await parse(text).querySelector("div.application-main");
+  const head = doc.querySelector("div.gisthead");
   return {
     title: new RegExp(`<a href="/${params.user}/${params.gistID}">(.*?)</a>`).exec(text)[1],
     description: /<div itemprop="about">(.*?)<\/div>/s.exec(text)[1].trim(),
-    forks: Number(doc.querySelector("#gist-fork-button > * :nth-child(3)").innerText),
+    stars: Number(head.querySelector("#gist-star-button-count > * :last-child")),
+    forks: Number(head.querySelector("#gist-fork-button > * :last-child").innerText),
   };
 }
