@@ -14,9 +14,9 @@ export type Gist = {
       url?: string; // if image like file
     };
   };
-  revisions: {
+  //revisions: {
 
-  };
+  //};
   comments: {
     user: User;
     date: Date;
