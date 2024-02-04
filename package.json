@@ -2,14 +2,15 @@
 	"name": "althub",
 	"version": "0.0.1",
 	"private": true,
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "eslint ."
-	},
+  "scripts": {
+    "postinstall": "svelte-kit sync",
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-check --tsconfig ./tsconfig.json --watch",
+    "lint": "eslint ."
+  },
 	"dependencies": {
 		"node-html-parser": "^6.1.12"
 	},

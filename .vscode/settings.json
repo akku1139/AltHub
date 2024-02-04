@@ -1,0 +1,9 @@
+{
+  "editor.insertSpaces": true, // indent_style
+  "editor.tabSize": 2, // indent_size
+  "files.eol": "\n", // end_of_line
+  "files.encoding": "utf8", // charset
+  "files.trimTrailingWhitespace": true, // trim_trailing_whitespace
+  "files.insertFinalNewline": true, // insert_final_newline
+  "files.trimFinalNewlines": true,
+}
