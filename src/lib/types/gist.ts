@@ -5,9 +5,11 @@ export type Gist = {
   description: string;
   user: User;
   gistID: string;
-  stars: number;
+  //stars: number;
+  stars: string;
   // stargazers: User[];
-  forks: number;
+  //forks: number;
+  forks: string;
   files: {
     filename: string;
     content:  {
