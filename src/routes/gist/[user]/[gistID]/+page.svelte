@@ -8,4 +8,4 @@ export let data:Gist;
 <div>{ data.description }</div>
 forks: {data.forks}
 
-{ JSON.stringify(data) }
+{ JSON.stringify(data,null,2) }

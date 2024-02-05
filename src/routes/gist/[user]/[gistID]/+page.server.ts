@@ -13,6 +13,10 @@ export async function load({ params }): Promise<Gist> {
   const doc = await parse(text).querySelector("div.application-main");
   const head = doc.querySelector("div.gisthead");
   return {
+    wtf: {
+      doc: doc,
+      head: head,
+    },
     title: new RegExp(`<a href="/${params.user}/${params.gistID}">(.*?)</a>`).exec(text)[1],
     description: /<div itemprop="about">(.*?)<\/div>/s.exec(text)[1].trim(),
     //stars: Number(head.querySelector("#gist-star-button-count :first-child :nth-child(3)").innerText),
